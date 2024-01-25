@@ -1,5 +1,10 @@
 # Фронтент приложение тестового задания
 
+## Пошаговый запуск приложения
+1. git clone https://github.com/syagofarov/test.git
+2. cd test
+3. npm i
+4. npm start
 
 ## Сервер разработки
 
