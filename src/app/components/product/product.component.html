@@ -1,0 +1,8 @@
+<div class="py-4 px-6 border rounded flex items-center flex-col mb-2">
+  <img [src]="product.images[0]" [alt]="product.title" class="mb-2 max-h-[300px]">
+  <h2 class="mb-2 text-lg text-center">{{ product.title }}</h2>
+  <p> Category: {{ product.category }}</p>
+  <p> Price: <span class="font-bold"> {{ product.price | currency: 'RUB' }}</span></p>
+  <p> {{ product.description }}</p>
+  <p> Rate: {{ product.rating }}</p>
+</div>

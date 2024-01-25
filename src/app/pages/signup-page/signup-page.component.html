@@ -1,0 +1,71 @@
+
+  <form [formGroup]="form" (ngSubmit)="signUp()" class="border p-2 my-2 flex flex-col items-center">
+    <h1 class="font-bold mb-2 text-lg">Форма регистрации</h1>
+    <input 
+      type="text"
+      class="border py-2 px-4 mb-2 w-full"
+      [ngClass]="{
+        'border-rose-600': login.errors != null && login.touched,
+        'border-black': login.errors == null && login.touched
+      }"
+      placeholder="Логин*"
+      formControlName="login"
+    >
+
+    <div
+      class="text-red-600 font-medium mb-2"
+      *ngIf="login.touched"
+    >
+      <p *ngIf="login.errors?.minlength">Минимальная длина логина 6 символов!</p>
+      <p *ngIf="login.errors?.required">Логин обязателен для заполнения!</p>
+    </div>
+
+    <input 
+      type="text"
+      class="border py-2 px-4 mb-2 w-full"
+      placeholder="Телефон"
+      formControlName="phone"
+      mask="+0 (000) 000-00-00"
+    >
+    <div
+      class="text-red-600 font-medium mb-2"
+      *ngIf="phone.touched"
+    >
+      <p *ngIf="phone.errors?.required">Телефон обязателен для заполнения!</p>
+      <p *ngIf="phone.errors?.pattern">Неверный формат телефона!</p>
+  </div>
+
+    <input 
+      type="text"
+      class="border py-2 px-4 mb-2 w-full"
+      [ngClass]="{
+        'border-rose-600': password.errors != null && password.touched,
+        'border-black': password.errors == null && password.touched
+      }"
+      placeholder="Пароль*"
+      formControlName="password"
+    >
+
+    <div
+      class="text-red-600 font-medium mb-2"
+      *ngIf="password.touched"
+    >
+      <p *ngIf="password.errors?.minlength">Минимальная длина пароля 6 символов!</p>
+      <p *ngIf="password.errors?.required">Пароль обязателен для заполнения!</p>
+      <p *ngIf="password.errors?.pattern">Пароль должен сожержать одну заглавную букву, одну строчную и один специальный символ ({{'@$!%*?&'}})!`</p>
+    </div>
+  
+    <div class="flex justify-between">
+      <button
+        type="submit"
+        class="py-2 px-4 text-white outline"
+        [disabled]="form.controls.login.value === '' || form.controls.password.value === ''"
+        [ngClass]="{
+          'bg-gray-500': !isDataValid(),
+          'bg-green-500': isDataValid()
+        }"
+      >
+        Зарегистрироваться
+      </button>
+    </div>
+  </form>
