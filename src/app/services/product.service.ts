@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IProduct, IProductApi } from "../models/product";
+import { IProductApi } from "../models/product";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { IProduct, IProductApi } from "../models/product";
 export class ProductService {
   constructor(private http: HttpClient) {
   }
-  
+
   getProducts(skip: number, limit: number): Observable<IProductApi> {
     return this.http.get<IProductApi>(`https://dummyjson.com/products?skip=${skip}&limit=${limit}`)
   }
